@@ -44,4 +44,4 @@ Foo.start();
 Foo.setPeriod(500);
 ```
 
-You can read example [Blink_AnalogRead](https://github.com/maisonsmd/msTask/examples/Blink_AnalogRead/Blink_AnalogRead.ino) to know how to use.
+You can read example [Blink_AnalogRead](https://github.com/maisonsmd/msTask/blob/master/examples/Blink_AnalogRead/Blink_AnalogRead.ino) to know how to use.
