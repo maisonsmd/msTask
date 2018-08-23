@@ -1,4 +1,4 @@
-#TimerOne Library#
+# msTask
 
 This library is based on Paul Stoffregen's TimerOne library that provide ability to add more than one callback, which I called "task"
 
