@@ -7,8 +7,8 @@
 */
 #include <msTask.h>
 
-//function declarations to make the compiler happy,
-//or you will have to move task definitions to below BlinkTask and AnalogTask definitions
+//function declarations to make the compiler happy
+
 void TurnLedOn();
 void TurnLedOff();
 
