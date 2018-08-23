@@ -33,15 +33,15 @@ msTask::init();
 
 ## Stop a task
 ```C++
-Foo.stop();
+fooTask.stop();
 ```
 ## Start a task
 ```C++
-Foo.start();
+fooTask.start();
 ```
 ## Change a task's period
 ```C++
-Foo.setPeriod(500);
+fooTask.setPeriod(500);
 ```
 
 You can read example [Blink_AnalogRead](https://github.com/maisonsmd/msTask/blob/master/examples/Blink_AnalogRead/Blink_AnalogRead.ino) to know how to use.
