@@ -18,8 +18,9 @@ setPeriod	KEYWORD2
 getPeriod	KEYWORD2
 init	KEYWORD2
 getCount	KEYWORD2
-getCallbacks	KEYWORD2
+getTasks	KEYWORD2
 isRunning	KEYWORD2
+setCallback	KEYWORD2
 
 #######################################
 # Instances (KEYWORD2)

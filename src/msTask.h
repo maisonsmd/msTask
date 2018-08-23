@@ -29,6 +29,8 @@ private:
 	volatile uint32_t period = 1000000UL;
 	volatile boolean enable;
 	void(*isrCallBack)();
+	static TimerOne timer;
+
 	static void mainISR() {
 		uint32_t elapsed = micros();
 		timer.stop();
@@ -41,20 +43,20 @@ private:
 			_micros += lastPeriod;
 		uint32_t minMicros = 4294967295UL;
 		for (uint8_t i = 0; i < getCount(); i++) {
-			if (getCallbacks()[i]->enable == false)
+			if (getTasks()[i]->enable == false)
 				continue;
-			if (_micros >= getCallbacks()[i]->nextMicros) {
-				getCallbacks()[i]->nextMicros = _micros + getCallbacks()[i]->period;
-				getCallbacks()[i]->isrCallBack();
+			if (_micros >= getTasks()[i]->nextMicros) {
+				getTasks()[i]->nextMicros = _micros + getTasks()[i]->period;
+				getTasks()[i]->isrCallBack();
 			}
-			if (getCallbacks()[i]->nextMicros < minMicros) {
-				minMicros = getCallbacks()[i]->nextMicros;
+			if (getTasks()[i]->nextMicros < minMicros) {
+				minMicros = getTasks()[i]->nextMicros;
 			}
 		}
 		//to avoid var overflow
 		if (_micros > 3294967295UL) {
 			for (uint8_t i = 0; i < getCount(); i++) {
-				getCallbacks()[i]->nextMicros -= _micros;
+				getTasks()[i]->nextMicros -= _micros;
 			}
 			minMicros -= _micros;
 			_micros = 0UL;
@@ -73,8 +75,6 @@ private:
 		}
 		lastMicrosSetPeriod = micros();
 	}
-
-	static TimerOne timer;
 
 	void create(uint32_t period, void(*callback)()) {
 		if (period < 5UL)
@@ -110,9 +110,9 @@ public:
 		timer.stop();
 		uint32_t minMicros = 4294967295UL;
 		for (uint8_t i = 0; i < getCount(); i++) {
-			getCallbacks()[i]->nextMicros = getCallbacks()[i]->period + _micros;
-			if (getCallbacks()[i]->nextMicros < minMicros)
-				minMicros = getCallbacks()[i]->nextMicros;
+			getTasks()[i]->nextMicros = getTasks()[i]->period + _micros;
+			if (getTasks()[i]->nextMicros < minMicros)
+				minMicros = getTasks()[i]->nextMicros;
 		}
 		timer.attachInterrupt(mainISR);
 		timer.initialize(minMicros - _micros);
@@ -142,8 +142,8 @@ public:
 
 		uint32_t minMicros = 4294967295UL;
 		for (uint8_t i = 0; i < getCount(); i++) {
-			if (getCallbacks()[i]->nextMicros < minMicros)
-				minMicros = getCallbacks()[i]->nextMicros;
+			if (getTasks()[i]->nextMicros < minMicros)
+				minMicros = getTasks()[i]->nextMicros;
 		}
 		if (minMicros > _micros)
 			timer.setPeriod(minMicros - _micros);
@@ -154,10 +154,13 @@ public:
 
 		taskPeriodChanged = true;
 	}
+	void setCallback(void(*callback)()) {
+		isrCallBack = callback;
+	}
 	static uint8_t getCount() {
 		return nCallbacks;
 	}
-	static volatile msTask ** getCallbacks() {
+	static volatile msTask ** getTasks() {
 		return callbacks;
 	}
 };
