@@ -1,0 +1,10 @@
+msTask	KEYWORD2
+msTask	KEYWORD1
+start	KEYWORD2
+stop	KEYWORD2
+setPeriod	KEYWORD2
+getPeriod	KEYWORD2
+init	KEYWORD2
+getCount	KEYWORD2
+getCallbacks	KEYWORD2
+isRunning	KEYWORD2

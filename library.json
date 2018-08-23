@@ -1,0 +1,16 @@
+{
+  "name": "msTask",
+  "keywords": "task",
+  "description": "TimeOne extended library with multiple callback",
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/maisonsmd/msTask"
+  },
+  "frameworks": "arduino",
+  "platforms":
+  [
+    "atmelavr",
+    "teensy"
+  ]
+}
