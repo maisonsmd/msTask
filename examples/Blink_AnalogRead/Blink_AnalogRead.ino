@@ -6,7 +6,7 @@
 
 #include <msTask.h>
 
-//function declarations to make C compiler happy,
+//function declarations to make the compiler happy,
 //or you will have to move task definitions to below BlinkTask and AnalogTask definitions
 void BlinkTask();
 void AnalogTask();
