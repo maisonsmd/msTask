@@ -1,5 +1,17 @@
-msTask	KEYWORD2
+#######################################
+# Syntax Coloring Map For msTask
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
 msTask	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
 start	KEYWORD2
 stop	KEYWORD2
 setPeriod	KEYWORD2
@@ -8,3 +20,11 @@ init	KEYWORD2
 getCount	KEYWORD2
 getCallbacks	KEYWORD2
 isRunning	KEYWORD2
+
+#######################################
+# Instances (KEYWORD2)
+#######################################
+
+#######################################
+# Constants (LITERAL1)
+#######################################
