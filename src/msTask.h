@@ -4,7 +4,6 @@
 	Author:     WILDLIFE\maisonsmd
 */
 
-
 //TimeOne extended library with multiple callback
 #ifndef _MSTIMERONE_h
 #define _MSTIMERONE_h
@@ -38,8 +37,7 @@ private:
 		if (taskPeriodChanged) {
 			_micros += micros() - lastMicrosSetPeriod;
 			taskPeriodChanged = false;
-		}
-		else
+		} else
 			_micros += lastPeriod;
 		uint32_t minMicros = 4294967295UL;
 		for (uint8_t i = 0; i < getCount(); i++) {
@@ -47,7 +45,8 @@ private:
 				continue;
 			if (_micros >= getTasks()[i]->nextMicros) {
 				getTasks()[i]->nextMicros = _micros + getTasks()[i]->period;
-				getTasks()[i]->isrCallBack();
+				if (getTasks()[i]->isrCallBack != nullptr)
+					getTasks()[i]->isrCallBack();
 			}
 			if (getTasks()[i]->nextMicros < minMicros) {
 				minMicros = getTasks()[i]->nextMicros;
@@ -105,6 +104,7 @@ public:
 		create(msTimerOne_->period, msTimerOne_->isrCallBack);
 	}
 	msTask() {
+		create(1000, nullptr);
 	}
 	static void init() {
 		timer.stop();
