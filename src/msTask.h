@@ -9,7 +9,7 @@
 #define _MSTIMERONE_h
 
 #if defined(ARDUINO) && ARDUINO >= 100
-#include "arduino.h"
+#include "Arduino.h"
 #else
 #include "WProgram.h"
 #endif
@@ -82,7 +82,7 @@ private:
 		this->period = period * 1000UL;
 		this->isrCallBack = callback;
 
-		volatile msTask ** temp = new msTask *[nCallbacks + 1];
+		volatile msTask ** temp = new volatile msTask *[nCallbacks + 1];
 		for (uint8_t i = 0; i < nCallbacks; i++) {
 			temp[i] = callbacks[i];
 		}
